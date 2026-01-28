@@ -29,14 +29,14 @@
 
 
         <StackPanel HorizontalAlignment="Right" Margin="0,28,38,0" VerticalAlignment="Top" Width="300">
-            <!-- DatePicker -->
+            
             <Label Content="Дата" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,5"/>
             <DatePicker x:Name="TaskDatePicker" Height="35" FontSize="14" VerticalContentAlignment="Center" Background="White"/>
 
-            <!-- TimePicker -->
+      
             <Label Content="Время" FontSize="16" FontWeight="SemiBold" Margin="0,20,0,5"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <!-- часы -->
+    
                 <ComboBox x:Name="HoursComboBox" Width="70" Height="35" FontSize="14" VerticalContentAlignment="Center"
                           SelectionChanged="HandleTimeSelectionChanged" Background="White">
                     <ComboBoxItem Content="00"/>
@@ -67,7 +67,7 @@
 
                 <TextBlock Text=":" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="5,0,5,0"/>
 
-                <!-- минуты -->
+             
                 <ComboBox x:Name="MinutesComboBox" Width="70" Height="35" FontSize="14" VerticalContentAlignment="Center"
                           SelectionChanged="HandleTimeSelectionChanged" Background="White">
                     <ComboBoxItem Content="00"/>

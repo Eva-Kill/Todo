@@ -12,7 +12,7 @@
             <ColumnDefinition Width="377*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Registration Button -->
+  
         <Button x:Name="RegisterButton"
                 Grid.Column="1"
                 Content="Регистрация"

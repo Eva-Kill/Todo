@@ -18,7 +18,7 @@
         <Button x:Name="UchebaButton" Grid.Column="1" Content="Учеба" HorizontalAlignment="Left" Margin="315,41,0,0" VerticalAlignment="Top" Background="White" BorderBrush="White" Foreground="#FF2E50FC" FontSize="16" Click="HandleStudyCategoryClick"/>
         <Button x:Name="OtdyhButton" Grid.Column="1" Content="Отдых" HorizontalAlignment="Left" Margin="392,41,0,0" VerticalAlignment="Top" Background="White" BorderBrush="White" Foreground="#FFD62BFF" FontSize="16" Click="HandleLeisureCategoryClick"/>
 
-        <!-- прямоугольник для обводки -->
+        
         <Rectangle Fill="White" 
                Stroke="Black" 
                StrokeThickness="1"
@@ -54,27 +54,27 @@
             </Button.Template>
         </Button>
 
-        <!-- список задач -->
+        
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Margin="162,96,0,0" VerticalAlignment="Top" Height="300" Width="318">
             <StackPanel x:Name="TasksPanel">
 
             </StackPanel>
         </ScrollViewer>
 
-        <!-- подробного описания задачи -->
+       
         <Border Grid.Column="2" Background="White" BorderBrush="White" BorderThickness="1" Margin="46,75,75,38" CornerRadius="8" Padding="25">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-26,-26,-26,-26">
                 <StackPanel x:Name="TaskDetailsPanel">
                     <TextBlock x:Name="SelectedTaskTitle" Text="Выберите задачу" FontSize="24" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,20"/>
 
                     <StackPanel x:Name="TaskDetailsContent" Visibility="Collapsed">
-                        <!-- время/дата -->
+                   
                         <StackPanel Margin="0,0,0,25">
                             <TextBlock x:Name="TaskTime" Text="18:00" FontSize="16" FontWeight="Medium" Foreground="#333333" Margin="0,0,0,5"/>
                             <TextBlock x:Name="TaskDate" Text="01 Января 2022" FontSize="14" Foreground="#666666"/>
                         </StackPanel>
 
-                        <!-- описание -->
+                  
                         <TextBlock x:Name="TaskDescription" Text="Lorem ipsum dolor sit amet, consectetur adipiscing." 
                             TextWrapping="Wrap" FontSize="14" LineHeight="20" Foreground="#333333" Margin="0,0,0,30"/>
 
