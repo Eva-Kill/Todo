@@ -1,0 +1,103 @@
+﻿<Window x:Class="Todo.View.Main_empty"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Todo.View"
+      mc:Ignorable="d" 
+      Title="Main_empty" Height="450" Width="800">
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="737*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="CreateTaskButton"
+                Content="Создать первую задачу"
+                HorizontalAlignment="Left"
+                Margin="323,312,0,0"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Width="187"
+                Background="#FFDE4949"
+                Foreground="White"
+                BorderBrush="White" 
+                Height="37" 
+                Grid.Column="1"
+                Click="HandleCreateTaskButtonClick">
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="7,7,7,7" 
+                            Margin="0,1,0,0">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+        <Rectangle Fill="Black" Margin="0,105,694,0" Grid.ColumnSpan="2" />
+
+        <Label x:Name="WelcomeLabel" 
+               Content="Добро пожаловать!" 
+               HorizontalAlignment="Left" 
+               Margin="261,97,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="30" 
+               Grid.Column="1"/>
+
+        <Label x:Name="CreateTaskLabel" 
+               Content="Создайте свою первую &#xD;&#xA;задачу!" 
+               HorizontalAlignment="Left" 
+               Margin="261,160,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="30" 
+               Grid.Column="1"/>
+
+
+        <Button x:Name="ExitButton"
+                HorizontalContentAlignment="Left" 
+                Padding="20,0,0,0" 
+                Content="Выход" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Height="65" 
+                Width="106" 
+                Foreground="Black" 
+                BorderBrush="#FFDDDDDD" 
+                FontSize="10" 
+                Margin="0,1,0,0" 
+                Grid.ColumnSpan="2"
+                Click="HandleExitButtonClick"/>
+
+        <Button x:Name="ChangePhotoButton" 
+                HorizontalContentAlignment="Left" 
+                Padding="20,0,0,0" 
+                VerticalContentAlignment="Top" 
+                Content="Изменить&#xD;&#xA;фото&#xD;&#xA;профиля" 
+                HorizontalAlignment="Left" 
+                Margin="0,51,0,0" 
+                VerticalAlignment="Top" 
+                Height="54" 
+                Width="106" 
+                Foreground="Black"  
+                BorderBrush="#FFDDDDDD" 
+                FontSize="10" 
+                Grid.ColumnSpan="2"
+                Click="HandleChangePhotoButtonClick">
+        </Button>
+
+
+        <Image x:Name="UserProfileImage"
+               Margin="74,10,569,328" 
+               Source="/Image/Image2.png" 
+               Stretch="Fill" 
+               Grid.Column="1"/>
+    </Grid>
+</Window>

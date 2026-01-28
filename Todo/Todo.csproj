@@ -56,6 +56,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="repository\UserRepository.cs" />
+    <Compile Include="view\Creating tasks.xaml.cs">
+      <DependentUpon>Creating tasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Main empty.xaml.cs">
+      <DependentUpon>Main empty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Registration.xaml.cs">
+      <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +80,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\Creating tasks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Main empty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="view\Registration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

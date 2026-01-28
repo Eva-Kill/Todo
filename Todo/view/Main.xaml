@@ -1,0 +1,162 @@
+﻿<Window x:Class="Todo.View.Main"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Todo.View"
+      mc:Ignorable="d" 
+      Title="Main" Height="450" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="DomButton" Grid.Column="1" Content="Дом" HorizontalAlignment="Left" Margin="162,41,0,0" VerticalAlignment="Top" BorderBrush="White" Background="White" Foreground="#FF76DF93" FontSize="16" Click="HandleHomeCategoryClick"/>
+        <Button x:Name="RabotaButton" Grid.Column="1" Content="Работа" HorizontalAlignment="Left" Margin="231,41,0,0" VerticalAlignment="Top" BorderBrush="White" Foreground="#FFFF4F4F" Background="White" FontSize="16" Click="HandleWorkCategoryClick"/>
+        <Button x:Name="UchebaButton" Grid.Column="1" Content="Учеба" HorizontalAlignment="Left" Margin="315,41,0,0" VerticalAlignment="Top" Background="White" BorderBrush="White" Foreground="#FF2E50FC" FontSize="16" Click="HandleStudyCategoryClick"/>
+        <Button x:Name="OtdyhButton" Grid.Column="1" Content="Отдых" HorizontalAlignment="Left" Margin="392,41,0,0" VerticalAlignment="Top" Background="White" BorderBrush="White" Foreground="#FFD62BFF" FontSize="16" Click="HandleLeisureCategoryClick"/>
+
+        <!-- прямоугольник для обводки -->
+        <Rectangle Fill="White" 
+               Stroke="Black" 
+               StrokeThickness="1"
+               Width="329" 
+               Height="338"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               RadiusX="5"
+               RadiusY="5" Grid.Column="2" Margin="35,66,0,0"/>
+
+
+        <Button x:Name="Zadachi" Grid.Column="1" Content="Задачи" HorizontalAlignment="Left" Margin="17,163,0,0" VerticalAlignment="Top" BorderBrush="White" Background="White" FontSize="16" Click="HandleActiveTasksClick"/>
+        <Button x:Name="Istoria" Grid.Column="1" Content="История" HorizontalAlignment="Left" Margin="17,0,0,0" VerticalAlignment="Center" Background="White" BorderBrush="White" Click="HandleHistoryClick" FontSize="16"/>
+
+
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="34,99,0,0" TextWrapping="Wrap" Text="Alex" VerticalAlignment="Top" Width="117" FontSize="15" Foreground="#333333" FontWeight="SemiBold"/>
+
+
+        <Button Grid.Column="1" Content="+" HorizontalAlignment="Left" Margin="17,341,0,0" VerticalAlignment="Top" 
+                FontSize="24" Background="#FFDE4949" BorderBrush="#FFDE4949" 
+                Height="55" Width="55" Foreground="White" 
+                RenderTransformOrigin="0.5,0.5"
+                Click="HandleAddTaskButtonClick">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Fill="{TemplateBinding Background}" 
+                                 Stroke="{TemplateBinding BorderBrush}" 
+                                 StrokeThickness="{TemplateBinding BorderThickness}"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- список задач -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Margin="162,96,0,0" VerticalAlignment="Top" Height="300" Width="318">
+            <StackPanel x:Name="TasksPanel">
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- подробного описания задачи -->
+        <Border Grid.Column="2" Background="White" BorderBrush="White" BorderThickness="1" Margin="46,75,75,38" CornerRadius="8" Padding="25">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-26,-26,-26,-26">
+                <StackPanel x:Name="TaskDetailsPanel">
+                    <TextBlock x:Name="SelectedTaskTitle" Text="Выберите задачу" FontSize="24" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,20"/>
+
+                    <StackPanel x:Name="TaskDetailsContent" Visibility="Collapsed">
+                        <!-- время/дата -->
+                        <StackPanel Margin="0,0,0,25">
+                            <TextBlock x:Name="TaskTime" Text="18:00" FontSize="16" FontWeight="Medium" Foreground="#333333" Margin="0,0,0,5"/>
+                            <TextBlock x:Name="TaskDate" Text="01 Января 2022" FontSize="14" Foreground="#666666"/>
+                        </StackPanel>
+
+                        <!-- описание -->
+                        <TextBlock x:Name="TaskDescription" Text="Lorem ipsum dolor sit amet, consectetur adipiscing." 
+                            TextWrapping="Wrap" FontSize="14" LineHeight="20" Foreground="#333333" Margin="0,0,0,30"/>
+
+
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,0">
+
+                            <Button x:Name="CompleteButton" Content="Готово" 
+                                    Background="#FFDE4949" Foreground="White" 
+                                    BorderBrush="#FFDE4949" 
+                                    Padding="20,10" 
+                                    FontSize="16" FontWeight="SemiBold"
+                                    Click="HandleCompleteTaskButtonClick" 
+                                    Margin="0,0,0,10"
+                                    Height="30" Width="200">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="border" 
+                                                            Background="{TemplateBinding Background}" 
+                                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                           CornerRadius="11,11,0,0">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="border" Property="Background" Value="#FFC43C3C"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter TargetName="border" Property="Background" Value="#FFA83232"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+
+
+                            <Button x:Name="DeleteButton" Content="Удалить" 
+                                    Background="#FFDE4949" Foreground="White" 
+                                    BorderBrush="#FFDE4949" 
+                                    BorderThickness="1" 
+                                    Padding="20,10" 
+                                    FontSize="16" FontWeight="SemiBold"
+                                    Click="HandleDeleteTaskClick"
+                                    Height="30" Width="200"
+                                    Margin="0,0,0,20">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="border" 
+                                                            Background="{TemplateBinding Background}" 
+                                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            CornerRadius="0,0,11,11">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="border" Property="Background" Value="#FFC43C3C"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="True">
+                                                            <Setter TargetName="border" Property="Background" Value="#FFA83232"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Image x:Name="UserPhotoImage" Margin="6,12,447,340" Source="/Image/Image3.png" Stretch="Fill" Grid.Column="1"/>
+    </Grid>
+</Window>
