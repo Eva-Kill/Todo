@@ -25,13 +25,13 @@ namespace Todo.View
             private set { _userPhoto = value; }
         }
 
-        public Main_empty() // Конструктор окна без задач
+        public Main_empty() 
         {
             InitializeComponent();
             ConfigureEventHandlers();
         }
 
-        private void ConfigureEventHandlers() // Настраивает обработчики событий
+        private void ConfigureEventHandlers() 
         {
             Loaded += HandleWindowLoaded;
             ExitButton.Click += HandleExitButtonClick;
@@ -39,33 +39,33 @@ namespace Todo.View
             ChangePhotoButton.Click += HandleChangePhotoButtonClick;
         }
 
-        private void HandleWindowLoaded(object sender, RoutedEventArgs e) // Обрабатывает загрузку окна
+        private void HandleWindowLoaded(object sender, RoutedEventArgs e) 
         {
             LoadUserProfilePhoto();
         }
 
-        private void HandleExitButtonClick(object sender, RoutedEventArgs e) // Обрабатывает кнопку выхода
+        private void HandleExitButtonClick(object sender, RoutedEventArgs e) 
         {
             CloseCurrentWindow();
         }
 
-        private void HandleCreateTaskButtonClick(object sender, RoutedEventArgs e) // Обрабатывает кнопку создания задачи
+        private void HandleCreateTaskButtonClick(object sender, RoutedEventArgs e) 
         {
             OpenTaskCreationDialog();
         }
 
-        private void HandleChangePhotoButtonClick(object sender, RoutedEventArgs e) // Обрабатывает кнопку смены фото
+        private void HandleChangePhotoButtonClick(object sender, RoutedEventArgs e) 
         {
             ChangeProfilePhoto();
         }
 
-        private void CloseCurrentWindow() // Закрывает текущее окно
+        private void CloseCurrentWindow() 
         {
             var window = Window.GetWindow(this);
             window?.Close();
         }
 
-        private void OpenTaskCreationDialog() // Открывает диалог создания задачи
+        private void OpenTaskCreationDialog()
         {
             var taskCreationWindow = new Creating_tasks
             {
@@ -84,7 +84,7 @@ namespace Todo.View
             taskCreationWindow.Show();
         }
 
-        private void HandleNewTaskCreated(Todo.View.Main.Task newTask) // Обрабатывает создание новой задачи
+        private void HandleNewTaskCreated(Todo.View.Main.Task newTask) 
         {
             var mainWindow = new Todo.View.Main();
             mainWindow.AddNewTask(newTask);
@@ -98,7 +98,7 @@ namespace Todo.View
             CloseCurrentWindow();
         }
 
-        private void ChangeProfilePhoto() // Меняет фото профиля
+        private void ChangeProfilePhoto() 
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Todo.View
             }
         }
 
-        private OpenFileDialog CreatePhotoSelectionDialog() // Создает диалог выбора фото
+        private OpenFileDialog CreatePhotoSelectionDialog() 
         {
             return new OpenFileDialog
             {
@@ -130,7 +130,7 @@ namespace Todo.View
             };
         }
 
-        private void ProcessSelectedImageFile(string selectedImagePath) // Обрабатывает выбранный файл изображения
+        private void ProcessSelectedImageFile(string selectedImagePath) 
         {
             if (!File.Exists(selectedImagePath))
             {
@@ -145,7 +145,7 @@ namespace Todo.View
             }
         }
 
-        private bool LoadAndSetProfileImage(string imagePath) // Загружает и устанавливает фото профиля
+        private bool LoadAndSetProfileImage(string imagePath) 
         {
             try
             {
@@ -171,7 +171,7 @@ namespace Todo.View
             }
         }
 
-        private BitmapImage CreateBitmapImageFromFile(string imagePath) // Создает BitmapImage из файла
+        private BitmapImage CreateBitmapImageFromFile(string imagePath) 
         {
             var bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -181,7 +181,7 @@ namespace Todo.View
             return bitmap;
         }
 
-        private void LoadDefaultProfilePhoto() // Загружает фото профиля по умолчанию
+        private void LoadDefaultProfilePhoto() 
         {
             try
             {
@@ -200,7 +200,7 @@ namespace Todo.View
             }
         }
 
-        private void SavePhotoFilePath(string photoPath) // Сохраняет путь к фото в файл
+        private void SavePhotoFilePath(string photoPath) 
         {
             try
             {
@@ -218,7 +218,7 @@ namespace Todo.View
             }
         }
 
-        private void LoadUserProfilePhoto() // Загружает фото профиля пользователя
+        private void LoadUserProfilePhoto() 
         {
             try
             {
@@ -239,7 +239,7 @@ namespace Todo.View
             }
         }
 
-        private string RetrieveSavedPhotoPath() // Получает сохраненный путь к фото
+        private string RetrieveSavedPhotoPath()
         {
             try
             {
@@ -259,19 +259,19 @@ namespace Todo.View
             return null;
         }
 
-        private void DisplaySuccessMessage(string message) // Отображает сообщение об успехе
+        private void DisplaySuccessMessage(string message)
         {
             MessageBox.Show(message, "Успех!",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void DisplayErrorMessage(string message) // Отображает сообщение об ошибке
+        private void DisplayErrorMessage(string message) 
         {
             MessageBox.Show(message, "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void DisplayInformationMessage(string message) // Отображает информационное сообщение
+        private void DisplayInformationMessage(string message) 
         {
             MessageBox.Show(message, "Информация",
                 MessageBoxButton.OK, MessageBoxImage.Information);

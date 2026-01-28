@@ -20,16 +20,16 @@ namespace Todo.View
     /// </summary>
     public partial class Creating_tasks : Window
     {
-        public event Action<Todo.View.Main.Task> TaskCreated; // Событие создания задачи
+        public event Action<Todo.View.Main.Task> TaskCreated; 
 
-        public Creating_tasks() // Конструктор окна создания задач
+        public Creating_tasks() 
         {
             InitializeComponent();
             SetDefaultFormValues();
             ConfigureEventHandlers();
         }
 
-        private void SetDefaultFormValues() // Устанавливает значения формы по умолчанию
+        private void SetDefaultFormValues() 
         {
             SetCurrentTime();
             SetCurrentDate();
@@ -37,7 +37,7 @@ namespace Todo.View
 
         private void ConfigureEventHandlers() // Настраивает обработчики событий
         {
-            // Event handlers can be configured here if needed
+            
         }
 
         private void SetCurrentTime() // Устанавливает текущее время в комбобоксы
@@ -50,7 +50,7 @@ namespace Todo.View
             SelectValueInComboBox(MinutesComboBox, GetNearestFiveMinutes(currentMinute).ToString("00"));
         }
 
-        private int GetNearestFiveMinutes(int minutes) // Округляет минуты до ближайших 5
+        private int GetNearestFiveMinutes(int minutes) 
         {
             var rounded = (int)(Math.Round(minutes / 5.0) * 5);
             return rounded == 60 ? 0 : rounded;
@@ -64,7 +64,7 @@ namespace Todo.View
             }
         }
 
-        private void SelectValueInComboBox(ComboBox comboBox, string value) // Выбирает значение в комбобоксе
+        private void SelectValueInComboBox(ComboBox comboBox, string value) 
         {
             if (comboBox != null && comboBox.Items != null)
             {
@@ -79,12 +79,12 @@ namespace Todo.View
             }
         }
 
-        private void HandleTimeSelectionChanged(object sender, SelectionChangedEventArgs e) // Обрабатывает изменение выбора времени
+        private void HandleTimeSelectionChanged(object sender, SelectionChangedEventArgs e) 
         {
-            // Time selection changed logic
+           
         }
 
-        private void HandleCreateButtonClick(object sender, RoutedEventArgs e) // Обрабатывает нажатие кнопки создания
+        private void HandleCreateButtonClick(object sender, RoutedEventArgs e) 
         {
             if (!IsFormValid())
             {
@@ -104,7 +104,7 @@ namespace Todo.View
             }
         }
 
-        private bool IsFormValid() // Проверяет валидность формы
+        private bool IsFormValid() 
         {
             if (!AreFormComponentsInitialized())
             {
@@ -129,7 +129,7 @@ namespace Todo.View
             return true;
         }
 
-        private bool AreFormComponentsInitialized() // Проверяет инициализацию компонентов формы
+        private bool AreFormComponentsInitialized() 
         {
             if (TitleTextBox == null || CategoryComboBox == null || TaskDatePicker == null)
             {
@@ -140,7 +140,7 @@ namespace Todo.View
             return true;
         }
 
-        private bool IsTitleValid() // Проверяет валидность названия задачи
+        private bool IsTitleValid() 
         {
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
             {
@@ -152,7 +152,7 @@ namespace Todo.View
             return true;
         }
 
-        private bool IsCategorySelected() // Проверяет выбор категории
+        private bool IsCategorySelected() 
         {
             if (CategoryComboBox.SelectedItem == null)
             {
@@ -164,7 +164,7 @@ namespace Todo.View
             return true;
         }
 
-        private bool IsDateSelected() // Проверяет выбор даты
+        private bool IsDateSelected() 
         {
             if (!TaskDatePicker.SelectedDate.HasValue)
             {
@@ -176,7 +176,7 @@ namespace Todo.View
             return true;
         }
 
-        private Todo.View.Main.Task GenerateTaskFromForm() // Генерирует задачу из данных формы
+        private Todo.View.Main.Task GenerateTaskFromForm() 
         {
             return new Todo.View.Main.Task
             {
@@ -190,7 +190,7 @@ namespace Todo.View
             };
         }
 
-        private string GetSelectedCategoryName() // Получает название выбранной категории
+        private string GetSelectedCategoryName() 
         {
             if (CategoryComboBox.SelectedItem is ComboBoxItem selectedItem)
             {
@@ -200,24 +200,24 @@ namespace Todo.View
             return "Без категории";
         }
 
-        private string GetTaskDescriptionText() // Получает текст описания задачи
+        private string GetTaskDescriptionText() 
         {
             return DescriptionTextBox?.Text?.Trim() ?? string.Empty;
         }
 
-        private string GetFormattedTime() // Форматирует время в строку
+        private string GetFormattedTime() 
         {
             var hour = GetSelectedComboBoxText(HoursComboBox) ?? "00";
             var minute = GetSelectedComboBoxText(MinutesComboBox) ?? "00";
             return $"{hour}:{minute}";
         }
 
-        private string GetFormattedDateString() // Форматирует дату в строку
+        private string GetFormattedDateString() 
         {
             return TaskDatePicker.SelectedDate.Value.ToString("dd MMMM yyyy");
         }
 
-        private string GetSelectedComboBoxText(ComboBox comboBox) // Получает текст выбранного элемента комбобокса
+        private string GetSelectedComboBoxText(ComboBox comboBox) 
         {
             if (comboBox?.SelectedItem is ComboBoxItem selectedItem)
             {
@@ -232,7 +232,7 @@ namespace Todo.View
             TaskCreated?.Invoke(task);
         }
 
-        private void DisplaySuccessMessage(Todo.View.Main.Task task) // Отображает сообщение об успешном создании
+        private void DisplaySuccessMessage(Todo.View.Main.Task task) 
         {
             var message = $"Задача создана!\n" +
                          $"Название: {task.Title}\n" +
@@ -242,29 +242,29 @@ namespace Todo.View
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void DisplayWarningMessage(string message) // Отображает предупреждающее сообщение
+        private void DisplayWarningMessage(string message) 
         {
             MessageBox.Show(message, "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void DisplayErrorMessage(string message) // Отображает сообщение об ошибке
+        private void DisplayErrorMessage(string message) 
         {
             MessageBox.Show(message, "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void HandleCancelButtonClick(object sender, RoutedEventArgs e) // Обрабатывает кнопку отмены
+        private void HandleCancelButtonClick(object sender, RoutedEventArgs e) 
         {
             CloseCurrentWindow();
         }
 
-        private void CloseCurrentWindow() // Закрывает текущее окно
+        private void CloseCurrentWindow() 
         {
             this.Close();
         }
 
-        public DateTime GetSelectedDateTime() // Получает выбранные дату и время
+        public DateTime GetSelectedDateTime() 
         {
             if (TaskDatePicker?.SelectedDate.HasValue == true)
             {
@@ -276,9 +276,9 @@ namespace Todo.View
             return DateTime.Now;
         }
 
-        private void HandleTextChanged(object sender, TextChangedEventArgs e) // Обрабатывает изменение текста
+        private void HandleTextChanged(object sender, TextChangedEventArgs e) 
         {
-            // Text changed logic
+            
         }
     }
 }

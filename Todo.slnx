@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="Todo/Todo.csproj" />
+  <Project Path="Entities/Entities.csproj" Id="478ce308-d510-4694-a3d5-471fdf276c76" />
+  <Project Path="Todo/Todo.csproj" Id="15008d2a-da8b-4845-b914-dc1b106e77db" />
 </Solution>
