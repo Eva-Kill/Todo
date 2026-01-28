@@ -22,12 +22,12 @@ namespace Todo
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Константы для текстовых заполнителей
+      
         private const string DefaultEmailText = "Введите почту";
         private const string DefaultPasswordText = "Введите пароль";
         private const string EmailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
-        // Кисти для оформления текста
+       
         private readonly Brush _defaultTextBrush = Brushes.Gray;
         private readonly Brush _activeTextBrush = Brushes.Black;
 
@@ -40,7 +40,7 @@ namespace Todo
         }
 
 
-        // Привязывает обработчики событий к элементам управления
+       
 
         private void AttachEventHandlers()
         {
@@ -54,7 +54,7 @@ namespace Todo
         }
 
 
-        // Инициализирует текстовые поля заполнителями по умолчанию
+    
 
         private void InitializeTextFields()
         {
@@ -63,7 +63,7 @@ namespace Todo
         }
 
 
-        // Обработчик события нажатия кнопки "Войти"
+    
 
         private void HandleLogin(object sender, RoutedEventArgs e)
         {
@@ -83,7 +83,7 @@ namespace Todo
             var email = EmailTextBox.Text;
             var password = PasswordTextBox.Text;
 
-            // Проверка на заполненность полей
+      
             if (IsPlaceholderText(email, DefaultEmailText) ||
                 IsPlaceholderText(password, DefaultPasswordText))
             {
@@ -91,14 +91,14 @@ namespace Todo
                 return false;
             }
 
-            // Проверка длины пароля
+     
             if (!IsPasswordValid(password))
             {
                 ShowMessage("Пароль должен содержать не менее 6 символов!", "Ошибка");
                 return false;
             }
 
-            // Проверка формата email
+           
             if (!IsEmailValid(email))
             {
                 ShowMessage("Email имеет неверный формат.", "Ошибка");
@@ -109,14 +109,14 @@ namespace Todo
         }
 
 
-        // Проверяет валидность пароля
+ 
 
         private bool IsPasswordValid(string password)
         {
             return password.Length >= 6;
         }
 
-        // Проверяет валидность email с использованием регулярного выражения
+      
 
         private bool IsEmailValid(string email)
         {
@@ -128,7 +128,7 @@ namespace Todo
             return Regex.IsMatch(email, EmailPattern);
         }
 
-        // Обрабатывает успешный вход в систему
+     
 
         private void ProcessSuccessfulLogin()
         {
@@ -136,14 +136,14 @@ namespace Todo
             NavigateToMainWindow();
         }
 
-        // Обработчик события нажатия кнопки "Регистрация"
+      
 
         private void HandleRegister(object sender, RoutedEventArgs e)
         {
             NavigateToRegistrationWindow();
         }
 
-        // Переходит к главному окну приложения
+       
 
         private void NavigateToMainWindow()
         {
@@ -152,7 +152,7 @@ namespace Todo
             CloseCurrentWindow();
         }
 
-        // Переходит к окну регистрации
+
 
         private void NavigateToRegistrationWindow()
         {
@@ -166,35 +166,34 @@ namespace Todo
             Close();
         }
 
-        // Обработчик получения фокуса полем email
+       
 
         private void HandleEmailFocus(object sender, RoutedEventArgs e)
         {
             ClearPlaceholderIfNeeded(EmailTextBox, DefaultEmailText);
         }
 
-        // Обработчик потери фокуса полем email
+       
 
         private void HandleEmailLostFocus(object sender, RoutedEventArgs e)
         {
             RestorePlaceholderIfEmpty(EmailTextBox, DefaultEmailText);
         }
 
-        // Обработчик получения фокуса полем пароля
 
         private void HandlePasswordFocus(object sender, RoutedEventArgs e)
         {
             ClearPlaceholderIfNeeded(PasswordTextBox, DefaultPasswordText);
         }
 
-        // Обработчик потери фокуса полем пароля
+
 
         private void HandlePasswordLostFocus(object sender, RoutedEventArgs e)
         {
             RestorePlaceholderIfEmpty(PasswordTextBox, DefaultPasswordText);
         }
 
-        // Очищает текст заполнителя если он отображается
+
 
         private void ClearPlaceholderIfNeeded(TextBox textBox, string placeholderText)
         {
@@ -204,7 +203,7 @@ namespace Todo
                 textBox.Foreground = _activeTextBrush;
             }
         }
-        // Восстанавливает текст заполнителя если поле пустое
+     
 
         private void RestorePlaceholderIfEmpty(TextBox textBox, string placeholderText)
         {
@@ -214,7 +213,7 @@ namespace Todo
             }
         }
 
-        // Устанавливает текст заполнителя в текстовое поле
+
 
         private void SetPlaceholderText(TextBox textBox, string placeholderText)
         {
@@ -222,7 +221,7 @@ namespace Todo
             textBox.Foreground = _defaultTextBrush;
         }
 
-        // Проверяет, является ли текст заполнителем
+
 
 
         private bool IsPlaceholderText(string text, string placeholderText)
@@ -230,7 +229,7 @@ namespace Todo
             return text == placeholderText;
         }
 
-        // Отображает сообщение в диалоговом окне
+      
 
         private void ShowMessage(string message, string title)
         {

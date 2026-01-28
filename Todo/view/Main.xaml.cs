@@ -39,7 +39,7 @@ namespace Todo.View
             public TextBlock TitleTextBlock { get; set; }
         }
 
-        public Main() // Конструктор главного окна приложения
+        public Main() 
         {
             InitializeComponent();
             _activeTasks = new Dictionary<string, Task>();
@@ -49,13 +49,13 @@ namespace Todo.View
             InitializeTaskDisplay();
         }
 
-        public void SetUserPhoto(BitmapImage photo) // Устанавливает фото пользователя
+        public void SetUserPhoto(BitmapImage photo) 
         {
             _userPhoto = photo;
             UpdateProfilePhotoDisplay();
         }
 
-        private void LoadUserProfilePhoto() // Загружает фото профиля пользователя
+        private void LoadUserProfilePhoto() 
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Todo.View
             }
         }
 
-        private void LoadPhotoFromFilePath(string path) // Загружает фото из указанного пути
+        private void LoadPhotoFromFilePath(string path) 
         {
             var bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -93,11 +93,11 @@ namespace Todo.View
             UpdateProfilePhotoDisplay();
         }
 
-        private void LoadDefaultProfilePhoto() // Загружает фото профиля по умолчанию
+        private void LoadDefaultProfilePhoto() 
         {
             try
             {
-                const string defaultPhotoPath = "фото_умолч.jpg";
+                const string defaultPhotoPath = "Image2.png";
                 if (File.Exists(defaultPhotoPath))
                 {
                     LoadPhotoFromFilePath(defaultPhotoPath);
@@ -109,7 +109,7 @@ namespace Todo.View
             }
         }
 
-        private void UpdateProfilePhotoDisplay() // Обновляет отображение фото профиля
+        private void UpdateProfilePhotoDisplay() 
         {
             if (UserPhotoImage != null && _userPhoto != null)
             {
@@ -117,12 +117,12 @@ namespace Todo.View
             }
         }
 
-        private void InitializeTaskDisplay() // Инициализирует отображение задач
+        private void InitializeTaskDisplay() 
         {
             DisplayActiveTasks();
         }
 
-        private void HandleNewTaskCreated(Todo.View.Main.Task newTask) // Обрабатывает создание новой задачи
+        private void HandleNewTaskCreated(Todo.View.Main.Task newTask) 
         {
             var localTask = new Task
             {
@@ -190,14 +190,14 @@ namespace Todo.View
             }
         }
 
-        private IEnumerable<Task> FilterTasksByCategory(string category, IEnumerable<Task> tasks) // Фильтрует задачи по категории
+        private IEnumerable<Task> FilterTasksByCategory(string category, IEnumerable<Task> tasks) 
         {
             return category == "Все"
                 ? tasks
                 : tasks.Where(t => t.Category == category);
         }
 
-        private void ShowEmptyTasksMessage(string message) // Показывает сообщение об отсутствии задач
+        private void ShowEmptyTasksMessage(string message) 
         {
             var noTasksText = new TextBlock
             {
@@ -223,7 +223,7 @@ namespace Todo.View
             }
         }
 
-        private void RefreshTaskDisplay() // Обновляет отображение задач
+        private void RefreshTaskDisplay() 
         {
             if (!_isHistoryMode)
             {
@@ -235,14 +235,14 @@ namespace Todo.View
             }
         }
 
-        private void ClearTaskSelection() // Очищает выбор задачи
+        private void ClearTaskSelection() 
         {
             _currentSelectedTaskId = null;
             TaskDetailsContent.Visibility = Visibility.Collapsed;
             SelectedTaskTitle.Text = "Выберите задачу";
         }
 
-        private void HandleCheckBoxChecked(object sender, RoutedEventArgs e) // Обрабатывает отметку чекбокса задачи
+        private void HandleCheckBoxChecked(object sender, RoutedEventArgs e) 
         {
             if (!_isHistoryMode && sender is CheckBox checkBox)
             {
@@ -254,7 +254,7 @@ namespace Todo.View
             }
         }
 
-        private void MarkTaskAsCompleted(Task task) // Отмечает задачу как выполненную
+        private void MarkTaskAsCompleted(Task task) 
         {
             task.IsCompleted = true;
             ApplyCompletedTaskStyle(task);
@@ -263,7 +263,7 @@ namespace Todo.View
             DisplaySuccessMessage($"Задача '{task.Title}' выполнена и перемещена в историю!");
         }
 
-        private void HandleCompleteTaskButtonClick(object sender, RoutedEventArgs e) // Обрабатывает кнопку завершения задачи
+        private void HandleCompleteTaskButtonClick(object sender, RoutedEventArgs e) 
         {
             if (!_isHistoryMode && !string.IsNullOrEmpty(_currentSelectedTaskId) && _activeTasks.ContainsKey(_currentSelectedTaskId))
             {
@@ -272,13 +272,13 @@ namespace Todo.View
             }
         }
 
-        private void UpdateHeaderTitle(string text) // Обновляет заголовок панели задач
+        private void UpdateHeaderTitle(string text)
         {
             SelectedTaskTitle.Text = text;
             TaskDetailsContent.Visibility = Visibility.Collapsed;
         }
 
-        private void UpdateCategoryButtonStates(string activeCategory) // Обновляет состояние кнопок категорий
+        private void UpdateCategoryButtonStates(string activeCategory) 
         {
             ShowAllCategoryButtons();
             ResetCategoryButtonStyles();
@@ -290,7 +290,7 @@ namespace Todo.View
             }
         }
 
-        private Button GetCategoryButtonByName(string category) // Возвращает кнопку категории по имени
+        private Button GetCategoryButtonByName(string category) 
         {
             switch (category)
             {
@@ -307,13 +307,13 @@ namespace Todo.View
             }
         }
 
-        private void ApplyActiveCategoryButtonStyle(Button button) // Применяет стиль активной кнопки категории
+        private void ApplyActiveCategoryButtonStyle(Button button) 
         {
             button.Background = new SolidColorBrush(Color.FromRgb(240, 248, 255));
             button.BorderBrush = new SolidColorBrush(Color.FromRgb(100, 149, 237));
         }
 
-        private void ShowAllCategoryButtons() // Показывает все кнопки категорий
+        private void ShowAllCategoryButtons() 
         {
             DomButton.Visibility = Visibility.Visible;
             RabotaButton.Visibility = Visibility.Visible;
@@ -321,7 +321,7 @@ namespace Todo.View
             OtdyhButton.Visibility = Visibility.Visible;
         }
 
-        private void ResetCategoryButtonStyles() // Сбрасывает стили кнопок категорий
+        private void ResetCategoryButtonStyles() 
         {
             var buttons = new[] { DomButton, RabotaButton, UchebaButton, OtdyhButton };
             foreach (var button in buttons)
@@ -331,27 +331,27 @@ namespace Todo.View
             }
         }
 
-        private void HandleHomeCategoryClick(object sender, RoutedEventArgs e) // Обрабатывает выбор категории "Дом"
+        private void HandleHomeCategoryClick(object sender, RoutedEventArgs e) 
         {
             SwitchCategory("Дом");
         }
 
-        private void HandleWorkCategoryClick(object sender, RoutedEventArgs e) // Обрабатывает выбор категории "Работа"
+        private void HandleWorkCategoryClick(object sender, RoutedEventArgs e) 
         {
             SwitchCategory("Работа");
         }
 
-        private void HandleStudyCategoryClick(object sender, RoutedEventArgs e) // Обрабатывает выбор категории "Учеба"
+        private void HandleStudyCategoryClick(object sender, RoutedEventArgs e) 
         {
             SwitchCategory("Учеба");
         }
 
-        private void HandleLeisureCategoryClick(object sender, RoutedEventArgs e) // Обрабатывает выбор категории "Отдых"
+        private void HandleLeisureCategoryClick(object sender, RoutedEventArgs e) 
         {
             SwitchCategory("Отдых");
         }
 
-        private void SwitchCategory(string category) // Переключает отображение по категории
+        private void SwitchCategory(string category) 
         {
             if (_isHistoryMode)
                 DisplayCompletedTasks(category);
@@ -359,13 +359,13 @@ namespace Todo.View
                 DisplayActiveTasks(category);
         }
 
-        private void HandleActiveTasksClick(object sender, RoutedEventArgs e) // Обрабатывает показ активных задач
+        private void HandleActiveTasksClick(object sender, RoutedEventArgs e) 
         {
             DisplayActiveTasks("Все");
             ClearTaskSelection();
         }
 
-        private void HandleHistoryClick(object sender, RoutedEventArgs e) // Обрабатывает показ истории задач
+        private void HandleHistoryClick(object sender, RoutedEventArgs e) 
         {
             DisplayCompletedTasks("Все");
             ClearTaskSelection();
@@ -440,7 +440,7 @@ namespace Todo.View
             };
         }
 
-        private Grid CreateTaskGridLayout() // Создает разметку сетки для задачи
+        private Grid CreateTaskGridLayout() 
         {
             var grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -448,7 +448,7 @@ namespace Todo.View
             return grid;
         }
 
-        private Grid CreateCompletedTaskGridLayout() // Создает разметку сетки для завершенной задачи
+        private Grid CreateCompletedTaskGridLayout() 
         {
             var grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -468,14 +468,14 @@ namespace Todo.View
             };
         }
 
-        private CheckBox CreateCheckedCheckBox() // Создает отмеченный чекбокс
+        private CheckBox CreateCheckedCheckBox() 
         {
             var checkBox = CreateTaskCheckBox();
             checkBox.IsChecked = true;
             return checkBox;
         }
 
-        private StackPanel CreateTaskContentPanel(Task task) // Создает панель содержимого задачи
+        private StackPanel CreateTaskContentPanel(Task task) 
         {
             var stackPanel = new StackPanel();
 
@@ -501,7 +501,7 @@ namespace Todo.View
             return stackPanel;
         }
 
-        private StackPanel CreateCompletedTaskContentPanel(Task task) // Создает панель содержимого завершенной задачи
+        private StackPanel CreateCompletedTaskContentPanel(Task task) 
         {
             var stackPanel = new StackPanel();
 
@@ -528,7 +528,7 @@ namespace Todo.View
             return stackPanel;
         }
 
-        private TextBlock CreateCompletedStatusLabel() // Создает метку статуса "Выполнено"
+        private TextBlock CreateCompletedStatusLabel() 
         {
             return new TextBlock
             {
@@ -541,7 +541,7 @@ namespace Todo.View
             };
         }
 
-        private void HandleTaskSelection(object sender, MouseButtonEventArgs e, Task task) // Обрабатывает выбор задачи
+        private void HandleTaskSelection(object sender, MouseButtonEventArgs e, Task task) 
         {
             UpdateTaskSelectionState(task);
 
@@ -553,7 +553,7 @@ namespace Todo.View
             }
         }
 
-        private void UpdateTaskSelectionState(Task selectedTask) // Обновляет состояние выбора задач
+        private void UpdateTaskSelectionState(Task selectedTask) 
         {
             var tasksToUpdate = _isHistoryMode ? _completedTasks.Values : _activeTasks.Values;
 
@@ -575,7 +575,7 @@ namespace Todo.View
             }
         }
 
-        private void HighlightSelectedTaskBorder(Border border) // Подсвечивает выбранную границу задачи
+        private void HighlightSelectedTaskBorder(Border border) 
         {
             if (_isHistoryMode)
             {
@@ -602,13 +602,13 @@ namespace Todo.View
             DeleteButton.Visibility = _isHistoryMode ? Visibility.Collapsed : Visibility.Visible;
         }
 
-        private Task FindTaskByCheckBox(CheckBox checkBox) // Находит задачу по чекбоксу
+        private Task FindTaskByCheckBox(CheckBox checkBox) 
         {
             return _activeTasks.Values.Concat(_completedTasks.Values)
                 .FirstOrDefault(t => t.TaskCheckBox == checkBox);
         }
 
-        private void ApplyCompletedTaskStyle(Task task) // Применяет стиль завершенной задачи
+        private void ApplyCompletedTaskStyle(Task task) 
         {
             if (task.TaskBorder != null)
             {
@@ -639,7 +639,7 @@ namespace Todo.View
             }
         }
 
-        private bool ConfirmTaskDeletion(string taskTitle) // Подтверждает удаление задачи
+        private bool ConfirmTaskDeletion(string taskTitle) 
         {
             var result = MessageBox.Show($"Вы уверены, что хотите удалить задачу '{taskTitle}'?",
                                        "Подтверждение удаления",
@@ -647,7 +647,7 @@ namespace Todo.View
             return result == MessageBoxResult.Yes;
         }
 
-        private ControlTemplate CreateCustomCheckBoxTemplate() // Создает кастомный шаблон чекбокса
+        private ControlTemplate CreateCustomCheckBoxTemplate() 
         {
             var template = new ControlTemplate(typeof(CheckBox));
 
@@ -662,7 +662,7 @@ namespace Todo.View
             return template;
         }
 
-        private FrameworkElementFactory CreateCheckBoxEllipseFactory() // Создает фабрику для эллипса чекбокса
+        private FrameworkElementFactory CreateCheckBoxEllipseFactory() 
         {
             var factory = new FrameworkElementFactory(typeof(Ellipse));
             factory.SetValue(Ellipse.StrokeProperty, new SolidColorBrush(Color.FromRgb(46, 80, 252)));
@@ -674,7 +674,7 @@ namespace Todo.View
             return factory;
         }
 
-        private FrameworkElementFactory CreateCheckBoxContentFactory() // Создает фабрику для контента чекбокса
+        private FrameworkElementFactory CreateCheckBoxContentFactory()
         {
             var factory = new FrameworkElementFactory(typeof(ContentPresenter));
             factory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
@@ -704,20 +704,12 @@ namespace Todo.View
             taskCreationWindow.Show();
         }
 
-        private void DisplaySuccessMessage(string message) // Отображает сообщение об успехе
+        private void DisplaySuccessMessage(string message) 
         {
             MessageBox.Show(message, "Успех",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void HandleTextChanged(object sender, TextChangedEventArgs e) // Обрабатывает изменение текста
-        {
-           
-        }
-
-        private void HandleButtonClick(object sender, RoutedEventArgs e) // Обрабатывает нажатие кнопки
-        {
-            
-        }
+   
     }
 }

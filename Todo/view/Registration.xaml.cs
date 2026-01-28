@@ -36,7 +36,7 @@ namespace Todo.View
             InitializePlaceholderText();
         }
 
-        private void ConfigureEventHandlers() // Настраивает обработчики событий для элементов управления
+        private void ConfigureEventHandlers() 
         {
             RegisterButton.Click += HandleRegisterButtonClick;
             BackButton.Click += HandleBackButtonClick;
@@ -47,13 +47,13 @@ namespace Todo.View
             AttachPlaceholderEventHandlers(ConfirmPasswordTextBox, ConfirmPasswordPlaceholder);
         }
 
-        private void AttachPlaceholderEventHandlers(TextBox textBox, string placeholderText) // Привязывает обработчики событий фокуса к текстовым полям
+        private void AttachPlaceholderEventHandlers(TextBox textBox, string placeholderText) 
         {
             textBox.GotFocus += (sender, e) => RemovePlaceholderText(textBox, placeholderText);
             textBox.LostFocus += (sender, e) => RestorePlaceholderIfEmpty(textBox, placeholderText);
         }
 
-        private void InitializePlaceholderText() // Инициализирует текст заполнителей в полях ввода
+        private void InitializePlaceholderText() 
         {
             SetTextBoxPlaceholder(UsernameTextBox, UsernamePlaceholder);
             SetTextBoxPlaceholder(EmailTextBox, EmailPlaceholder);
@@ -61,7 +61,7 @@ namespace Todo.View
             SetTextBoxPlaceholder(ConfirmPasswordTextBox, ConfirmPasswordPlaceholder);
         }
 
-        private void HandleRegisterButtonClick(object sender, RoutedEventArgs e) // Обрабатывает нажатие кнопки регистрации
+        private void HandleRegisterButtonClick(object sender, RoutedEventArgs e) 
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Todo.View
             };
         }
 
-        private bool ValidateRegistrationForm(RegistrationData data) // Проверяет валидность данных регистрации
+        private bool ValidateRegistrationForm(RegistrationData data) 
         {
             if (AreRequiredFieldsEmpty(data))
             {
@@ -126,7 +126,7 @@ namespace Todo.View
             return true;
         }
 
-        private bool AreRequiredFieldsEmpty(RegistrationData data) // Проверяет, пустые ли обязательные поля
+        private bool AreRequiredFieldsEmpty(RegistrationData data) 
         {
             return IsFieldPlaceholderOrEmpty(data.Username, UsernamePlaceholder) ||
                    IsFieldPlaceholderOrEmpty(data.Email, EmailPlaceholder) ||
@@ -134,7 +134,7 @@ namespace Todo.View
                    IsFieldPlaceholderOrEmpty(data.ConfirmPassword, ConfirmPasswordPlaceholder);
         }
 
-        private void ProcessUserRegistration(RegistrationData data) // Обрабатывает процесс регистрации пользователя
+        private void ProcessUserRegistration(RegistrationData data) 
         {
             bool registrationSuccessful = _userRepository.RegisterUser(data.Username, data.Password, data.Email);
 
@@ -145,12 +145,12 @@ namespace Todo.View
             }
         }
 
-        private void HandleBackButtonClick(object sender, RoutedEventArgs e) // Обрабатывает нажатие кнопки "Назад"
+        private void HandleBackButtonClick(object sender, RoutedEventArgs e) 
         {
             ReturnToLoginWindow();
         }
 
-        private void NavigateToMainApplicationWindow() // Переходит к главному окну приложения
+        private void NavigateToMainApplicationWindow() 
         {
             var mainWindow = new Todo.View.Main_empty();
             mainWindow.Show();
@@ -162,7 +162,7 @@ namespace Todo.View
             }
         }
 
-        private void ReturnToLoginWindow() // Возвращается к окну входа
+        private void ReturnToLoginWindow() 
         {
             var loginWindow = new Todo.MainWindow();
             loginWindow.Show();
@@ -174,7 +174,7 @@ namespace Todo.View
             }
         }
 
-        private void RemovePlaceholderText(TextBox textBox, string placeholderText) // Удаляет текст заполнителя при фокусе
+        private void RemovePlaceholderText(TextBox textBox, string placeholderText)
         {
             if (textBox.Text == placeholderText)
             {
@@ -183,7 +183,7 @@ namespace Todo.View
             }
         }
 
-        private void RestorePlaceholderIfEmpty(TextBox textBox, string placeholderText) // Восстанавливает заполнитель при пустом поле
+        private void RestorePlaceholderIfEmpty(TextBox textBox, string placeholderText) 
         {
             if (string.IsNullOrWhiteSpace(textBox.Text))
             {
@@ -191,30 +191,30 @@ namespace Todo.View
             }
         }
 
-        private void SetTextBoxPlaceholder(TextBox textBox, string placeholderText) // Устанавливает текст заполнителя
+        private void SetTextBoxPlaceholder(TextBox textBox, string placeholderText) 
         {
             textBox.Text = placeholderText;
             textBox.Foreground = _placeholderBrush;
         }
 
-        private bool IsFieldPlaceholderOrEmpty(string text, string placeholderText) // Проверяет, является ли текст заполнителем или пустым
+        private bool IsFieldPlaceholderOrEmpty(string text, string placeholderText) 
         {
             return text == placeholderText || string.IsNullOrWhiteSpace(text);
         }
 
-        private void DisplayWarningMessage(string message) // Отображает предупреждающее сообщение
+        private void DisplayWarningMessage(string message) 
         {
             MessageBox.Show(message, "Предупреждение",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void DisplayRegistrationSuccessMessage() // Отображает сообщение об успешной регистрации
+        private void DisplayRegistrationSuccessMessage() 
         {
             MessageBox.Show("Регистрация прошла успешно!", "Успех",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void DisplayErrorMessage(string message) // Отображает сообщение об ошибке
+        private void DisplayErrorMessage(string message) 
         {
             MessageBox.Show(message, "Ошибка",
                 MessageBoxButton.OK, MessageBoxImage.Error);
@@ -232,7 +232,7 @@ namespace Todo.View
    
     public class InputValidator // Валидатор входных данных
     {
-        public bool IsValidEmail(string email) // Проверяет валидность email адреса
+        public bool IsValidEmail(string email) 
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
@@ -248,12 +248,12 @@ namespace Todo.View
             }
         }
 
-        public bool IsValidPassword(string password) // Проверяет валидность пароля
+        public bool IsValidPassword(string password) 
         {
             return !string.IsNullOrWhiteSpace(password) && password.Length >= 6;
         }
 
-        public bool IsValidUsername(string username) // Проверяет валидность имени пользователя
+        public bool IsValidUsername(string username)
         {
             return !string.IsNullOrWhiteSpace(username) && username.Length >= 3;
         }
